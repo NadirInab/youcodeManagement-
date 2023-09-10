@@ -1,27 +1,24 @@
 CREATE table author(
-	id int(255) PRIMARY KEY,
+	id int(255) PRIMARY KEY AUTO INCREMENT,
 	name varchar(255)
 )
 
 CREATE TABLE user (
-	id int(255) PRIMARY KEY,
+	id int(255) PRIMARY KEY AUTO INCREMENT,
 	name varchar(255),
 	membershipNumber int(255)
 )
 
 CREATE TABLE book(
-	id int(255) PRIMARY KEY,
+	id int(255) PRIMARY KEY AUTO INCREMENT,
 	title varchar(255),
-	publicationDate date,
 	status enum('available', 'unavailable', 'lost'),
 	authorId int,
-	borrowerId int,
 	FOREIGN KEY (authorId) REFERENCES author(id),
-	FOREIGN KEY (borrowerId) REFERENCES user(id)
 )
 
 CREATE TABLE borrows (
-	id int(255),
+	id int(255) PRIMARY KEY AUTO INCREMENT,
 	borrowerId int,
 	bookId int,
 	borrowDate datetime,
