@@ -6,6 +6,12 @@ public class User {
 
     private int memberShipNumber ;
 
+    public User(int id, String name, int memberShipNumber) {
+        this.id = id;
+        this.name = name;
+        this.memberShipNumber = memberShipNumber;
+    }
+
     public void setMemberShipNumber(int memberShipNumber){
         this.memberShipNumber = memberShipNumber ;
     }
