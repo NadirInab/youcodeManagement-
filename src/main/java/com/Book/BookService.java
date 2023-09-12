@@ -1,6 +1,8 @@
 package main.java.com.Book;
 
 import main.java.com.DB.DatabaseConnection;
+import main.java.com.User.User;
+
 import java.sql.*;
 
 public class BookService {
@@ -62,6 +64,24 @@ public class BookService {
             }
         }
         return true;
+    }
+
+    public Book getBook(int isbn) throws SQLException {
+        if (this.connection != null) {
+            String query = "SELECT * FROM book WHERE isbn = ?";
+            PreparedStatement pstm = connection.prepareStatement(query);
+            pstm.setInt(1, isbn);
+            ResultSet data = pstm.executeQuery();
+            Book book = null;
+            if (data.next()) {
+                String bookTitle = data.getString("title");
+                int autorId = data.getInt("authorId");
+                book = new Book(isbn,bookTitle, autorId);
+                book.settId(data.getInt("id"));
+            }
+            return book;
+        }
+        return null;
     }
 
     public void searchForBook(String title){
@@ -131,5 +151,18 @@ public class BookService {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public int getNumberOfBooks() throws SQLException {
+        if(this.connection != null){
+            String query = "SELECT COUNT(*) FROM book LIMIT 1" ;
+            PreparedStatement preparedStatement = connection.prepareStatement(query) ;
+            ResultSet data = preparedStatement.executeQuery() ;
+            if(data.next()) {
+                int count = data.getInt(1);
+                return count;
+            }
+        }
+        return -1 ;
     }
 }

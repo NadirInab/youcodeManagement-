@@ -3,6 +3,7 @@ package main.java.com.Borrows;
 import main.java.com.DB.DatabaseConnection;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class BorrowsController {
 
@@ -17,8 +18,8 @@ public class BorrowsController {
     public void index(){
         this.borrowsService.index();
     }
-    public void addBorrow(){
-        this.borrowsService.add();
+    public void addBorrow(int bookId) throws SQLException {
+        this.borrowsService.borrowBook(bookId)  ;
     }
 
     public void delete(){
