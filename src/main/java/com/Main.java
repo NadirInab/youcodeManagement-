@@ -8,12 +8,16 @@ import main.java.com.Author.AuthorController;
 import main.java.com.Book.Book;
 import main.java.com.Book.BookController;
 import main.java.com.Book.BookService;
+import main.java.com.Borrows.BorrowsController;
+import main.java.com.Statistics.Statistics;
 import main.java.com.User.User;
 
 public class Main {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws Exception {
         BookController bookController = new BookController() ;
+        BorrowsController borrowsController = new BorrowsController() ;
+        Statistics statistics = new Statistics() ;
 
         System.out.println("welcome to YouBiblio application : \n");
         Scanner scanner=new Scanner(System.in);
@@ -25,7 +29,7 @@ public class Main {
                     "4. Update Book\n"+
                     "5. Delete Book\n"+
                     "6. Borrow a Book\n"+
-                    "7. Return a Book\n");
+                    "7. Statistics \n");
             System.out.println("Enter your choice : ");
 
             int choice = scanner.nextInt();
@@ -79,14 +83,20 @@ public class Main {
 
                     break;
                 case 5:
-                    System.out.print("Enter Book ISBN : ");
+                    System.out.print("Enter Book ISBN to delete : ");
+                    int Isbn = scanner.nextInt();
+                    bookController.delete(Isbn);
                     break;
                 case 6:
                     System.out.print("Enter Book ISBN : ");
-
+                    int bookId = scanner.nextInt() ;
+                    borrowsController.addBorrow(bookId);
                     break;
                 case 7:
-                    System.out.print("Enter Book ISBN : ");
+                    int usersCount = statistics.getNumberOfUsers() ;
+                    int booksCount = statistics.getNumberOfBooks() ;
+                    System.out.println("Number of Users " + usersCount);
+                    System.out.println("Number of book " + booksCount);
                     break;
                 case 8:
                     break;
