@@ -6,6 +6,8 @@ import java.util.Scanner;
 
 
 public class Book {
+
+    private int id ;
     private int isbn ;
     private String title ;
     private String status ;
@@ -41,6 +43,13 @@ public class Book {
 
     public int getAuthor() {
         return authorId;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void settId(int id) {
+         this.id = id;
     }
 
     public void setTitle(String title) {

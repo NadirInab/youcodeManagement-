@@ -6,8 +6,7 @@ public class User {
 
     private int memberShipNumber ;
 
-    public User(int id, String name, int memberShipNumber) {
-        this.id = id;
+    public User( String name, int memberShipNumber) {
         this.name = name;
         this.memberShipNumber = memberShipNumber;
     }
